@@ -27,7 +27,7 @@ public class UDPServer {
         // 3.接收客户端发送的数据
         System.out.println("****服务器端已经启动，等待客户端发送数据");
         
-        MqHelper mq = new MqHelper("admin","admin","tcp://192.168.10.224:61616");
+        MqHelper mq = new MqHelper("admin","admin","tcp://192.168.10.65:61616");
         String topic="ServerXHJ";
         
         while(true){
