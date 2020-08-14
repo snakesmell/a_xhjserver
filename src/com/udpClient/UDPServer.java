@@ -35,7 +35,6 @@ public class UDPServer {
 				socket.receive(packet);// 此方法在接收到数据报之前会一直阻塞
 				// 4.读取数据
 				String bth = byteToHex(data); 
-				mq.sendTopicMessage(topic, bth);
 				String receiveName="";
 				/*
 				 * 向客户端响应数据
@@ -43,8 +42,9 @@ public class UDPServer {
 				// 1.定义客户端的地址、端口号、数据
 				InetAddress address = packet.getAddress();
 				int port = packet.getPort();
-				String xhj=address.getHostAddress()+":"+port;
+				String xhj=address.getHostAddress()+"-"+port;
 				System.out.println(xhj);
+				mq.sendTopicMessage(topic, xhj+"-"+bth);
 				/////////////////////////////////////////信号机查询响应、应答/////////////////////////////////////////////
 				// 81 01 - 4.1.1信号机联机请求
 				if((data[8]==(byte) (0x81 & 0xff))&&(data[9]==(byte) (0x01 & 0xff))) {
